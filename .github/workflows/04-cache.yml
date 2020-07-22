@@ -3,11 +3,11 @@ name: キャッシュ
 'on': push
 
 jobs:
-  job-01:
+  install-k14s:
     name: k14sをインストール（時間がかかるやつ）
     runs-on: ubuntu-latest
     steps:
       - name: k14s全部インストール
-        run: curl -L https://k14s.io/install.sh | bash
+        run: curl -L https://k14s.io/install.sh | sudo bash
       - name: yttのバージョン確認
         run: ytt --version
