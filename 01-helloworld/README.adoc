@@ -1,0 +1,27 @@
+== ワークフロー詳細
+
+----
+$ make cat
+name: はろーわーるど
+"on": push
+jobs:
+  build:
+    name: はろーわーるど
+    runs-on: ubuntu-latest
+    steps:
+    - run: echo "はろーわーるど"
+----
+
+== ざっくりと理解する
+
+----
+$ make show
+{
+  "name": "はろーわーるど",
+  "steps": [
+    {
+      "run": "echo \"はろーわーるど\""
+    }
+  ]
+}
+----

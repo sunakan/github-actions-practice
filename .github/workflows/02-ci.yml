@@ -1,5 +1,6 @@
+#! onが'on'なのはyttが変な挙動をするため
 name: 継続的インテグレーション
-on: push
+'on': push
 
 jobs:
   step01-02:
@@ -10,5 +11,16 @@ jobs:
         uses: actions/checkout@v2.0.0
       - name: cd 02-ci && すてっぷ１
         run: cd 02-ci && make step-01
-      - name: すてっぷ２
+      - name: cd 02-ci && すてっぷ２
         run: cd 02-ci && make step-02
+
+  step03-04:
+    name: すてっぷ０２－０４
+    runs-on: ubuntu-latest
+    steps:
+      - name: チェックアウト
+        uses: actions/checkout@v2.0.0
+      - name: cd 02-ci && すてっぷ３
+        run: cd 02-ci && make step-03
+      - name: cd 02-ci && すてっぷ４
+        run: cd 02-ci && make step-04

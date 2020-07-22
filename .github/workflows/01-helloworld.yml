@@ -1,5 +1,6 @@
+#! onが'on'なのはyttが変な挙動をするため
 name: はろーわーるど
-on: push
+'on': push
 
 jobs:
   build:

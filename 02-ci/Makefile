@@ -9,3 +9,7 @@ step-02:
 .PHONY: step-03
 step-03:
 	echo すてっぷ３
+
+.PHONY: step-04
+step-04:
+	echo すてっぷ４

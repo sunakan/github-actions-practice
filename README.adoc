@@ -1,1 +1,11 @@
 = GitHub Actionsの練習
+
+.準備
+----
+$ make setup-ytt
+----
+
+.片付け
+----
+$ make uninstall-ytt
+----
