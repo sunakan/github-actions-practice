@@ -4,7 +4,7 @@ name: 環境変数
 defaults:
   run:
     shell: bash
-    working-directory: scripts
+    working-directory: 03-env-variables
 
 jobs:
   job-01:
