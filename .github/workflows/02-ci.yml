@@ -1,0 +1,13 @@
+name: 継続的インテグレーション
+on: push
+
+jobs:
+  step01-02:
+    - name: チェックアウト
+      uses: actions/checkout@v2.0.0
+    - name: cd 02-ci
+      run: cd 02-ci
+    - name: すてっぷ１
+      run: make step-01
+    - name: すてっぷ２
+      run: make step-02
