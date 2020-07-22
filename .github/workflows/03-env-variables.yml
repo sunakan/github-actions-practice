@@ -1,0 +1,87 @@
+#! onが'on'なのはyttが変な挙動をするため
+name: 環境変数
+'on': push
+
+jobs:
+  job-01:
+    name: ホームディレクトリ
+    runs-on: ubuntu-latest
+    steps:
+      - name: ホームディレクトリ
+        run: make home
+
+  job-02:
+    name: ワークフロー名
+    runs-on: ubuntu-latest
+    steps:
+      - name: ワークフロー名
+        run: make github-workflow
+
+  job-03:
+    name: ワークフロー毎のユニークIDと1から始まる番号とアクションごとのユニークID
+    runs-on: ubuntu-latest
+    steps:
+      - name: ユニークID
+        run: make github-run-id
+      - name: ユニークID
+        run: make github-run-id
+      - name: 1から始まる番号
+        run: make github-run-number
+      - name: 1から始まる番号
+        run: make github-run-number
+      - name: アクションのユニークID
+        run: make github-action
+      - name: アクションのユニークID
+        run: make github-action
+
+  job-04:
+    name: （その２）ワークフロー毎のユニークIDと1から始まる番号とアクションごとのユニークID
+    runs-on: ubuntu-latest
+    steps:
+      - name: ユニークID
+        run: make github-run-id
+      - name: ユニークID
+        run: make github-run-id
+      - name: 1から始まる番号
+        run: make github-run-number
+      - name: 1から始まる番号
+        run: make github-run-number
+      - name: アクションのユニークID
+        run: make github-action
+      - name: アクションのユニークID
+        run: make github-action
+
+  job-05:
+    name: ワークフローを実行したイベント名
+    runs-on: ubuntu-latest
+    steps:
+      - name: ワークフローを実行したイベント名
+        run: make github-actor
+
+  job-06:
+    name: リポジトリ名
+    runs-on: ubuntu-latest
+    steps:
+      - name: リポジトリ名
+        run: make github-repository
+
+  job-07:
+    name: イベントのペイロードが保存されたファイルへのパス
+    runs-on: ubuntu-latest
+    steps:
+      - name: イベントのペイロードが保存されたファイルへのパス
+        run: make github-event-path
+
+  job-08:
+    name: ワークスペースディレクトリへのパス
+    runs-on: ubuntu-latest
+    steps:
+      - name: ワークスペースディレクトリへのパス
+        run: make github-workspace
+
+  job-09:
+    name: コミットSHA
+    runs-on: ubuntu-latest
+    steps:
+      - name: コミットSHA
+        run: make github-sha
