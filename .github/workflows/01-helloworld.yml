@@ -1,0 +1,9 @@
+name: はろーわーるど
+on: push
+
+jobs:
+  build:
+    name: はろーわーるど
+    runs-on: ubuntu-latest
+    sptes:
+      - run: echo "はろーわーるど"
