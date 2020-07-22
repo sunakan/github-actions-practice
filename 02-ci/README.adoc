@@ -11,12 +11,14 @@ jobs:
     steps:
     - name: チェックアウト
       uses: actions/checkout@v2.0.0
-    - name: cd 02-ci && すてっぷ１
-      run: cd 02-ci && make step-01
-    - name: cd 02-ci && すてっぷ２
-      run: cd 02-ci && make step-02
+    - name: すてっぷ１
+      run: make step-01
+      working-directory: ./02-ci
+    - name: すてっぷ２
+      run: make step-02
+      working-directory: ./02-ci
   step03-04:
-    name: すてっぷ０２－０４
+    name: すてっぷ０３－０４
     runs-on: ubuntu-latest
     steps:
     - name: チェックアウト
@@ -39,17 +41,19 @@ $ make show
       "uses": "actions/checkout@v2.0.0"
     },
     {
-      "name": "cd 02-ci && すてっぷ１",
-      "run": "cd 02-ci && make step-01"
+      "name": "すてっぷ１",
+      "run": "make step-01",
+      "working-directory": "./02-ci"
     },
     {
-      "name": "cd 02-ci && すてっぷ２",
-      "run": "cd 02-ci && make step-02"
+      "name": "すてっぷ２",
+      "run": "make step-02",
+      "working-directory": "./02-ci"
     }
   ]
 }
 {
-  "name": "すてっぷ０２－０４",
+  "name": "すてっぷ０３－０４",
   "steps": [
     {
       "name": "チェックアウト",
