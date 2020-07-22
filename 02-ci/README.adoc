@@ -1,0 +1,68 @@
+== ワークフロー詳細
+
+----
+$ make cat
+name: 継続的インテグレーション
+"on": push
+jobs:
+  step01-02:
+    name: すてっぷ０１－０２
+    runs-on: ubuntu-latest
+    steps:
+    - name: チェックアウト
+      uses: actions/checkout@v2.0.0
+    - name: cd 02-ci && すてっぷ１
+      run: cd 02-ci && make step-01
+    - name: cd 02-ci && すてっぷ２
+      run: cd 02-ci && make step-02
+  step03-04:
+    name: すてっぷ０２－０４
+    runs-on: ubuntu-latest
+    steps:
+    - name: チェックアウト
+      uses: actions/checkout@v2.0.0
+    - name: cd 02-ci && すてっぷ３
+      run: cd 02-ci && make step-03
+    - name: cd 02-ci && すてっぷ４
+      run: cd 02-ci && make step-04
+----
+
+== ざっくりと理解する
+
+----
+$ make show
+{
+  "name": "すてっぷ０１－０２",
+  "steps": [
+    {
+      "name": "チェックアウト",
+      "uses": "actions/checkout@v2.0.0"
+    },
+    {
+      "name": "cd 02-ci && すてっぷ１",
+      "run": "cd 02-ci && make step-01"
+    },
+    {
+      "name": "cd 02-ci && すてっぷ２",
+      "run": "cd 02-ci && make step-02"
+    }
+  ]
+}
+{
+  "name": "すてっぷ０２－０４",
+  "steps": [
+    {
+      "name": "チェックアウト",
+      "uses": "actions/checkout@v2.0.0"
+    },
+    {
+      "name": "cd 02-ci && すてっぷ３",
+      "run": "cd 02-ci && make step-03"
+    },
+    {
+      "name": "cd 02-ci && すてっぷ４",
+      "run": "cd 02-ci && make step-04"
+    }
+  ]
+}
+----
