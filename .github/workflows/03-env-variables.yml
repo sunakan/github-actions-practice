@@ -1,6 +1,10 @@
 #! onが'on'なのはyttが変な挙動をするため
 name: 環境変数
 'on': push
+defaults:
+  run:
+    shell: bash
+    working-directory: scripts
 
 jobs:
   job-01:
