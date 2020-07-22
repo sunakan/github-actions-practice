@@ -15,7 +15,7 @@ jobs:
         run: cd 02-ci && make step-02
 
   step03-04:
-    name: すてっぷ０２－０４
+    name: すてっぷ０３－０４
     runs-on: ubuntu-latest
     steps:
       - name: チェックアウト
