@@ -5,5 +5,5 @@ jobs:
   build:
     name: はろーわーるど
     runs-on: ubuntu-latest
-    stpes:
+    steps:
       - run: echo "はろーわーるど"
