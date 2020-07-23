@@ -14,6 +14,8 @@ jobs:
         id: install-k14s
         run: sleep 10 && sudo bash install.sh
         working-directory: /tmp
+      - name: lsで様子を確認
+        run: ls -al /tmp/ && ls -al /usr/local/bin/
       - name: キャッシュ
         uses: actions/cache@v2.0.0
         with:
