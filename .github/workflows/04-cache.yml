@@ -22,11 +22,14 @@ jobs:
           path: ${HOME}
           key: ${{ runner.os }}-2020-${{ hashFiles(format('{0}{1}', github.workspace, '/install.sh')) }}
           restore-keys: ${{ runner.os }}-2020-
-      - name: k14s全部インストール(yttだけ移動)
+      - name: k14s全部インストール(もしyttが既にあるのならば、やらない)
         id: install-k14s
         run: |
-          sudo bash install.sh
-          mkdir -p ${{ format('{0}{1}', github.workspace, '/hoge') }}
-          sudo mv /usr/local/bin/ytt ${{ format('{0}{1}', github.workspace, '/hoge/ytt') }}
+          command -v ${{ format('{0}{1}', github.workspace, '/hoge/ytt') }} \
+          || ( \
+            sudo bash install.sh \
+            && mkdir -p ${{ format('{0}{1}', github.workspace, '/hoge') }} \
+            && sudo mv /usr/local/bin/ytt ${{ format('{0}{1}', github.workspace, '/hoge/ytt') }} \
+          )
       - name: yttのバージョン確認
         run: ${{ format('{0}{1}', github.workspace, '/hoge/ytt') }} --version
