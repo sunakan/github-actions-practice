@@ -13,10 +13,10 @@ jobs:
         id: install-k14s
         run: |
           sudo bash install.sh
-          sudo mkdir -p /usr/local/bin/hoge/
-          sudo mv /usr/local/bin/ytt /usr/local/bin/hoge/ytt
+          mkdir -p ${{ format('{0}{1}', github.workspace, '/hoge') }}
+          sudo mv /usr/local/bin/ytt ${{ format('{0}{1}', github.workspace, '/hoge/ytt') }}
       - name: lsで様子を確認
-        run: ls -al /tmp/ && ls -al /usr/local/bin/hoge/
+        run: ls -al ${{ format('{0}{1}', github.workspace, '/hoge') }}
       - name: echoでキャッシュのキーを確認
         run: |
           echo "========"
@@ -25,7 +25,7 @@ jobs:
       - name: キャッシュ
         uses: actions/cache@v2.0.0
         with:
-          path: /usr/local/bin/hoge
+          path: ${{ format('{0}{1}', github.workspace, '/hoge') }}
           key: ${{ runner.os }}-${{ hashFiles(format('{0}{1}', github.workspace, '/install.sh')) }}
           restore-keys: ${{ runner.os }}-
       - name: yttのバージョン確認
