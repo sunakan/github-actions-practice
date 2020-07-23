@@ -19,7 +19,7 @@ jobs:
           path: ${{ format('{0}{1}', github.workspace, '/hoge') }}
           key: ${{ runner.os }}-sand-${{ hashFiles(format('{0}{1}', github.workspace, '/install.sh')) }}
           restore-keys: ${{ runner.os }}-sand-
-      - name: treeしてみる
+      - name: treeしてみる(もしyttがあるならキャッシュのリストアが成功している)
         run: tree ${{ github.workspace }}
       - name: k14s全部インストール(もしyttが既にあるのならば、やらない)
         id: install-k14s
