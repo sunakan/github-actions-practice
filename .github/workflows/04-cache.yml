@@ -4,10 +4,20 @@ name: キャッシュ
 
 jobs:
   install-k14s:
-    name: k14sをインストール（時間がかかるやつ）
+    name: k14sをインストール
     runs-on: ubuntu-latest
     steps:
-      - name: k14s全部インストール
-        run: curl -L https://k14s.io/install.sh | sudo bash
+      - name: k14sのinstall.shをダウンロード
+        run: curl -O https://k14s.io/install.sh
+          working-directory: /tmp/
+      - name: k14s全部インストール（わざと10秒かける）
+        id: install-k14s
+        run: sleep 10 && sudo bash install.sh
+          working-directory: /tmp/
+      - name: キャッシュ
+        uses: actions/cache@v2.0.0
+        with:
+          path: /usr/local/bin/
+          key: ${{ runner.os }}-${{ hashFiles('/tmp/install.sh') }}
       - name: yttのバージョン確認
         run: ytt --version
