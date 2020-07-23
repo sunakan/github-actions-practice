@@ -17,6 +17,8 @@ jobs:
           sudo mv /usr/local/bin/ytt ${{ format('{0}{1}', github.workspace, '/hoge/ytt') }}
       - name: lsで様子を確認
         run: ls -al ${{ format('{0}{1}', github.workspace, '/hoge') }}
+      - name: pwdとHOMEを見る
+        run: pwd && echo ${HOME}
       - name: echoでキャッシュのキーを確認
         run: |
           echo "========"
@@ -29,4 +31,4 @@ jobs:
           key: ${{ runner.os }}-${{ hashFiles(format('{0}{1}', github.workspace, '/install.sh')) }}
           restore-keys: ${{ runner.os }}-
       - name: yttのバージョン確認
-        run: /usr/local/bin/hoge/ytt --version
+        run: ${{ format('{0}{1}', github.workspace, '/hoge/ytt') }} --version
