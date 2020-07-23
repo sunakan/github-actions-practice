@@ -1,17 +1,13 @@
 = GitHub Actionsの練習
 
 [link=https://github.com/sunakan/github-actions-practice/actions?query=workflow%3A%E3%81%AF%E3%82%8D%E3%83%BC%E3%82%8F%E3%83%BC%E3%82%8B%E3%81%A9]
-https://github.com/sunakan/github-actions-practice/workflows/%E3%81%AF%E3%82%8D%E3%83%BC%E3%82%8F%E3%83%BC%E3%82%8B%E3%81%A9/badge.svg[]
-
+image::https://github.com/sunakan/github-actions-practice/workflows/%E3%81%AF%E3%82%8D%E3%83%BC%E3%82%8F%E3%83%BC%E3%82%8B%E3%81%A9/badge.svg[]
 [link=https://github.com/sunakan/github-actions-practice/actions?query=workflow%3A%E7%B6%99%E7%B6%9A%E7%9A%84%E3%82%A4%E3%83%B3%E3%83%86%E3%82%B0%E3%83%AC%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3]
 image::https://github.com/sunakan/github-actions-practice/workflows/%E7%B6%99%E7%B6%9A%E7%9A%84%E3%82%A4%E3%83%B3%E3%83%86%E3%82%B0%E3%83%AC%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3/badge.svg[]
-
 [link=https://github.com/sunakan/github-actions-practice/actions?query=workflow%3A%E7%92%B0%E5%A2%83%E5%A4%89%E6%95%B0]
 image::https://github.com/sunakan/github-actions-practice/workflows/%E7%92%B0%E5%A2%83%E5%A4%89%E6%95%B0/badge.svg[]
-
 [link=https://github.com/sunakan/github-actions-practice/actions?query=workflow%3A%E3%82%AD%E3%83%A3%E3%83%83%E3%82%B7%E3%83%A5]
 image::https://github.com/sunakan/github-actions-practice/workflows/%E3%82%AD%E3%83%A3%E3%83%83%E3%82%B7%E3%83%A5/badge.svg[]
-
 [link=https://github.com/sunakan/github-actions-practice/actions?query=workflow%3Acurl%E3%81%A7%E3%83%AF%E3%83%BC%E3%82%AF%E3%83%95%E3%83%AD%E3%83%BC%E3%82%92%E5%AE%9F%E8%A1%8C]
 image::https://github.com/sunakan/github-actions-practice/workflows/curl%E3%81%A7%E3%83%AF%E3%83%BC%E3%82%AF%E3%83%95%E3%83%AD%E3%83%BC%E3%82%92%E5%AE%9F%E8%A1%8C/badge.svg[]
 
