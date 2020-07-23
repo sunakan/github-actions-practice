@@ -24,10 +24,10 @@ jobs:
           echo "========"
           echo ${{ runner.os }}-${{ hashFiles(format('{0}{1}', github.workspace, '/install.sh')) }}
           echo "========"
-      - name: キャッシュ
+      - name: キャッシュ(pathはキャッシュの保存先。。)
         uses: actions/cache@v2.0.0
         with:
-          path: ${{ format('{0}{1}', github.workspace, '/hoge') }}
+          path: ${HOME}
           key: ${{ runner.os }}-${{ hashFiles(format('{0}{1}', github.workspace, '/install.sh')) }}
           restore-keys: ${{ runner.os }}-
       - name: yttのバージョン確認
