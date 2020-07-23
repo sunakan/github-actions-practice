@@ -9,21 +9,24 @@ jobs:
     steps:
       - name: k14sのinstall.shをダウンロード
         run: curl -O https://k14s.io/install.sh
-        working-directory: /tmp/
       - name: k14s全部インストール(yttだけ移動)
         id: install-k14s
         run: |
           sudo bash install.sh
           sudo mkdir -p /usr/local/bin/hoge/
           sudo mv /usr/local/bin/ytt /usr/local/bin/hoge/ytt
-        working-directory: /tmp
       - name: lsで様子を確認
-        run: ls -al /tmp/ && ls -al /usr/local/bin/
+        run: ls -al /tmp/ && ls -al /usr/local/bin/hoge/
+      - name: echoでキャッシュのキーを確認
+        run: |
+          echo "========"
+          echo ${{ runner.os }}-${{ hashFiles(format('{0}{1}', github.workspace, '/install.sh')) }}
+          echo "========"
       - name: キャッシュ
         uses: actions/cache@v2.0.0
         with:
           path: /usr/local/bin/hoge
-          key: ${{ runner.os }}-${{ hashFiles('/tmp/install.sh') }}
+          key: ${{ runner.os }}-${{ hashFiles(format('{0}{1}', github.workspace, '/install.sh')) }}
           restore-keys: ${{ runner.os }}-
       - name: yttのバージョン確認
         run: /usr/local/bin/hoge/ytt --version
