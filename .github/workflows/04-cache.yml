@@ -16,12 +16,6 @@ jobs:
           echo "========"
           echo ${{ runner.os }}-${{ hashFiles(format('{0}{1}', github.workspace, '/install.sh')) }}
           echo "========"
-      - name: キャッシュ(pathはキャッシュの保存先。。)
-        uses: actions/cache@v2.0.0
-        with:
-          path: ${HOME}
-          key: ${{ runner.os }}-2020-${{ hashFiles(format('{0}{1}', github.workspace, '/install.sh')) }}
-          restore-keys: ${{ runner.os }}-2020-
       - name: ls -al でhogeがあるか確認にする
         run: ls -al ${{ github.workspace }}
       - name: k14s全部インストール(もしyttが既にあるのならば、やらない)
@@ -33,5 +27,11 @@ jobs:
             && mkdir -p ${{ format('{0}{1}', github.workspace, '/hoge') }} \
             && sudo mv /usr/local/bin/ytt ${{ format('{0}{1}', github.workspace, '/hoge/ytt') }} \
           )
+      - name: キャッシュ
+        uses: actions/cache@v2.0.0
+        with:
+          path: ${HOME}
+          key: ${{ runner.os }}-cache-${{ hashFiles(format('{0}{1}', github.workspace, '/install.sh')) }}
+          restore-keys: ${{ runner.os }}-cache-
       - name: yttのバージョン確認
         run: ${{ format('{0}{1}', github.workspace, '/hoge/ytt') }} --version
