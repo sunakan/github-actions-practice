@@ -22,6 +22,8 @@ jobs:
           path: ${HOME}
           key: ${{ runner.os }}-2020-${{ hashFiles(format('{0}{1}', github.workspace, '/install.sh')) }}
           restore-keys: ${{ runner.os }}-2020-
+      - name: ls -al でhogeがあるか確認にする
+        run: ls -al ${{ github.workspace }}
       - name: k14s全部インストール(もしyttが既にあるのならば、やらない)
         id: install-k14s
         run: |
