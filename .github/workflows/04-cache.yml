@@ -19,5 +19,6 @@ jobs:
         with:
           path: /usr/local/bin/
           key: ${{ runner.os }}-${{ hashFiles('/tmp/install.sh') }}
+          restore-keys: ${{ runner.os }}-
       - name: yttのバージョン確認
         run: ytt --version
