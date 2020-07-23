@@ -1,6 +1,11 @@
 include ../shared-makefiles/help.mk
 
 ################################################################################
+# 変数
+################################################################################
+FILE_PATH := ../.github/workflows/$(shell basename $(PWD)).yml
+
+################################################################################
 # タスク
 ################################################################################
 .PHONY: step-01
@@ -19,15 +24,12 @@ step-03:
 step-04:
 	echo すてっぷ４
 
-define cat
-	cat ../.github/workflows/02-ci.yml
-endef
 .PHONY: cat
 cat: ## ワークフローを見る
-	@$(cat) | ../ytt -f-
+	@cat $(FILE_PATH) | ../ytt -f-
 
 .PHONY: show
 show: ## 簡単な説明
-	@$(cat) \
+	@cat $(FILE_PATH) \
 	| ../ytt -f- --output json \
 	| jq '.jobs[] | {name: .name, steps: .steps}'

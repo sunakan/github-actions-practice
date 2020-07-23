@@ -1,0 +1,11 @@
+#! onが'on'なのはyttが変な挙動をするため
+name: curlでワークフローを実行
+'on': repository_dispatch
+
+jobs:
+  dispatch:
+    name: 外からきたものをecho
+    runs-on: ubuntu-latest
+    steps:
+      - name: きたものをjsonで出力
+        run: echo "${{ toJson(github.event) }}"

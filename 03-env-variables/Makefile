@@ -1,6 +1,11 @@
 include ../shared-makefiles/help.mk
 
 ################################################################################
+# 変数
+################################################################################
+FILE_PATH := ../.github/workflows/$(shell basename $(PWD)).yml
+
+################################################################################
 # タスク
 ################################################################################
 .PHONY: home
@@ -55,15 +60,12 @@ github-head-ref: ## ソースブランチ名(pull reqイベントのみ)
 github-base-ref: ## ベースブランチ名(pull reqイベントのみ)
 	echo ${GITHUB_BASE_REF}
 
-define cat
-	cat ../.github/workflows/03-env-variables.yml
-endef
 .PHONY: cat
 cat: ## ワークフローを見る
-	@$(cat) | ../ytt -f-
+	@cat $(FILE_PATH) | ../ytt -f-
 
 .PHONY: show
 show: ## 簡単な説明
-	@$(cat) \
+	@cat $(FILE_PATH) \
 	| ../ytt -f- --output json \
 	| jq '.jobs[] | {name: .name, steps: .steps}'
