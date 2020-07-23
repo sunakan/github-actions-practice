@@ -20,8 +20,8 @@ jobs:
         uses: actions/cache@v2.0.0
         with:
           path: ${HOME}
-          key: ${{ runner.os }}-${{ hashFiles(format('{0}{1}', github.workspace, '/install.sh')) }}
-          restore-keys: ${{ runner.os }}-
+          key: ${{ runner.os }}-2020-${{ hashFiles(format('{0}{1}', github.workspace, '/install.sh')) }}
+          restore-keys: ${{ runner.os }}-2020-
       - name: k14s全部インストール(yttだけ移動)
         id: install-k14s
         run: |
