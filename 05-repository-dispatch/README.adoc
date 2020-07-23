@@ -2,14 +2,15 @@
 
 ----
 $ make cat
-name: はろーわーるど
-"on": push
+name: curlでワークフローを実行
+"on": repository_dispatch
 jobs:
-  build:
-    name: はろーわーるど
+  dispatch:
+    name: 外からきたものをecho
     runs-on: ubuntu-latest
     steps:
-    - run: echo "はろーわーるど"
+    - name: きたものをjsonで出力
+      run: echo "${{ toJson(github.event) }}"
 ----
 
 == ざっくりと理解
@@ -17,10 +18,11 @@ jobs:
 ----
 $ make show
 {
-  "name": "はろーわーるど",
+  "name": "外からきたものをecho",
   "steps": [
     {
-      "run": "echo \"はろーわーるど\""
+      "name": "きたものをjsonで出力",
+      "run": "echo \"${{ toJson(github.event) }}\""
     }
   ]
 }
@@ -38,6 +40,7 @@ $ make help
 ######################################################################
 cat                  ワークフローを見る
 show                 簡単な説明
+dispatch             curlで実行
 help                 Make タスク一覧
 ----
 

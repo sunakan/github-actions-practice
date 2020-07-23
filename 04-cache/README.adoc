@@ -1,0 +1,101 @@
+== ワークフロー詳細
+
+----
+$ make cat
+name: キャッシュ
+"on": push
+env:
+  cache-version: v1
+jobs:
+  install-k14s:
+    name: k14sをインストール
+    runs-on: ubuntu-latest
+    steps:
+    - name: hogeディレクトリ作成
+      run: mkdir -p ${{ format('{0}{1}', github.workspace, '/hoge') }}
+    - name: apt-get install tree
+      run: sudo apt-get update && sudo apt-get install -y tree
+    - name: k14sのinstall.shをダウンロード
+      run: curl -O https://k14s.io/install.sh
+    - name: キャッシュ
+      uses: actions/cache@v2.0.0
+      with:
+        path: ${{ format('{0}{1}', github.workspace, '/hoge') }}
+        key: ${{ env.cache-version }}-${{ runner.os }}-${{ hashFiles(format('{0}{1}',
+          github.workspace, '/install.sh')) }}
+        restore-keys: ${{ env.cache-version }}-${{ runner.os }}-
+    - name: treeしてみる(もしyttがあるならキャッシュのリストアが成功している)
+      run: tree ${{ github.workspace }}
+    - name: k14s全部インストール(もしyttが既にあるのならば、やらない)
+      id: install-k14s
+      run: |
+        ( command -v ${{ format('{0}{1}', github.workspace, '/hoge/ytt') }} && echo 'インストールしない') \
+        || ( \
+          sudo bash install.sh \
+          && mkdir -p ${{ format('{0}{1}', github.workspace, '/hoge') }} \
+          && sudo mv /usr/local/bin/ytt ${{ format('{0}{1}', github.workspace, '/hoge/ytt') }} \
+        )
+    - name: yttのバージョン確認
+      run: ${{ format('{0}{1}', github.workspace, '/hoge/ytt') }} --version
+----
+
+== ざっくりと理解
+
+----
+$ make show
+{
+  "name": "k14sをインストール",
+  "steps": [
+    {
+      "name": "hogeディレクトリ作成",
+      "run": "mkdir -p ${{ format('{0}{1}', github.workspace, '/hoge') }}"
+    },
+    {
+      "name": "apt-get install tree",
+      "run": "sudo apt-get update && sudo apt-get install -y tree"
+    },
+    {
+      "name": "k14sのinstall.shをダウンロード",
+      "run": "curl -O https://k14s.io/install.sh"
+    },
+    {
+      "name": "キャッシュ",
+      "uses": "actions/cache@v2.0.0",
+      "with": {
+        "key": "${{ env.cache-version }}-${{ runner.os }}-${{ hashFiles(format('{0}{1}', github.workspace, '/install.sh')) }}",
+        "path": "${{ format('{0}{1}', github.workspace, '/hoge') }}",
+        "restore-keys": "${{ env.cache-version }}-${{ runner.os }}-"
+      }
+    },
+    {
+      "name": "treeしてみる(もしyttがあるならキャッシュのリストアが成功している)",
+      "run": "tree ${{ github.workspace }}"
+    },
+    {
+      "id": "install-k14s",
+      "name": "k14s全部インストール(もしyttが既にあるのならば、やらない)",
+      "run": "( command -v ${{ format('{0}{1}', github.workspace, '/hoge/ytt') }} && echo 'インストールしない') \\\n|| ( \\\n  sudo bash install.sh \\\n  && mkdir -p ${{ format('{0}{1}', github.workspace, '/hoge') }} \\\n  && sudo mv /usr/local/bin/ytt ${{ format('{0}{1}', github.workspace, '/hoge/ytt') }} \\\n)\n"
+    },
+    {
+      "name": "yttのバージョン確認",
+      "run": "${{ format('{0}{1}', github.workspace, '/hoge/ytt') }} --version"
+    }
+  ]
+}
+----
+
+== help
+
+----
+$ make help
+######################################################################
+# Makeタスク一覧
+# $ make XXX
+# or
+# $ make XXX --dry-run
+######################################################################
+cat                  ワークフローを見る
+show                 簡単な説明
+help                 Make タスク一覧
+----
+

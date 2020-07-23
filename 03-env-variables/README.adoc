@@ -1,0 +1,296 @@
+== ワークフロー詳細
+
+----
+$ make cat
+name: 環境変数
+"on": push
+defaults:
+  run:
+    shell: bash
+    working-directory: 03-env-variables
+jobs:
+  job-01:
+    name: ホームディレクトリ
+    runs-on: ubuntu-latest
+    steps:
+    - name: チェックアウト
+      uses: actions/checkout@v2.0.0
+    - name: ホームディレクトリ
+      run: make home
+  job-02:
+    name: ワークフロー名
+    runs-on: ubuntu-latest
+    steps:
+    - name: チェックアウト
+      uses: actions/checkout@v2.0.0
+    - name: ワークフロー名
+      run: make github-workflow
+  job-03:
+    name: ワークフロー毎のユニークIDと1から始まる番号とアクションごとのユニークID
+    runs-on: ubuntu-latest
+    steps:
+    - name: チェックアウト
+      uses: actions/checkout@v2.0.0
+    - name: ユニークID
+      run: make github-run-id
+    - name: ユニークID
+      run: make github-run-id
+    - name: 1から始まる番号
+      run: make github-run-number
+    - name: 1から始まる番号
+      run: make github-run-number
+    - name: アクションのユニークID
+      run: make github-action
+    - name: アクションのユニークID
+      run: make github-action
+  job-04:
+    name: （その２）ワークフロー毎のユニークIDと1から始まる番号とアクションごとのユニークID
+    runs-on: ubuntu-latest
+    steps:
+    - name: チェックアウト
+      uses: actions/checkout@v2.0.0
+    - name: ユニークID
+      run: make github-run-id
+    - name: ユニークID
+      run: make github-run-id
+    - name: 1から始まる番号
+      run: make github-run-number
+    - name: 1から始まる番号
+      run: make github-run-number
+    - name: アクションのユニークID
+      run: make github-action
+    - name: アクションのユニークID
+      run: make github-action
+  job-05:
+    name: ワークフローを実行したイベント名
+    runs-on: ubuntu-latest
+    steps:
+    - name: チェックアウト
+      uses: actions/checkout@v2.0.0
+    - name: ワークフローを実行したイベント名
+      run: make github-actor
+  job-06:
+    name: リポジトリ名
+    runs-on: ubuntu-latest
+    steps:
+    - name: チェックアウト
+      uses: actions/checkout@v2.0.0
+    - name: リポジトリ名
+      run: make github-repository
+  job-07:
+    name: イベントのペイロードが保存されたファイルへのパス
+    runs-on: ubuntu-latest
+    steps:
+    - name: チェックアウト
+      uses: actions/checkout@v2.0.0
+    - name: イベントのペイロードが保存されたファイルへのパス
+      run: make github-event-path
+  job-08:
+    name: ワークスペースディレクトリへのパス
+    runs-on: ubuntu-latest
+    steps:
+    - name: チェックアウト
+      uses: actions/checkout@v2.0.0
+    - name: ワークスペースディレクトリへのパス
+      run: make github-workspace
+  job-09:
+    name: コミットSHA
+    runs-on: ubuntu-latest
+    steps:
+    - name: チェックアウト
+      uses: actions/checkout@v2.0.0
+    - name: コミットSHA
+      run: make github-sha
+----
+
+== ざっくりと理解
+
+----
+$ make show
+{
+  "name": "ホームディレクトリ",
+  "steps": [
+    {
+      "name": "チェックアウト",
+      "uses": "actions/checkout@v2.0.0"
+    },
+    {
+      "name": "ホームディレクトリ",
+      "run": "make home"
+    }
+  ]
+}
+{
+  "name": "ワークフロー名",
+  "steps": [
+    {
+      "name": "チェックアウト",
+      "uses": "actions/checkout@v2.0.0"
+    },
+    {
+      "name": "ワークフロー名",
+      "run": "make github-workflow"
+    }
+  ]
+}
+{
+  "name": "ワークフロー毎のユニークIDと1から始まる番号とアクションごとのユニークID",
+  "steps": [
+    {
+      "name": "チェックアウト",
+      "uses": "actions/checkout@v2.0.0"
+    },
+    {
+      "name": "ユニークID",
+      "run": "make github-run-id"
+    },
+    {
+      "name": "ユニークID",
+      "run": "make github-run-id"
+    },
+    {
+      "name": "1から始まる番号",
+      "run": "make github-run-number"
+    },
+    {
+      "name": "1から始まる番号",
+      "run": "make github-run-number"
+    },
+    {
+      "name": "アクションのユニークID",
+      "run": "make github-action"
+    },
+    {
+      "name": "アクションのユニークID",
+      "run": "make github-action"
+    }
+  ]
+}
+{
+  "name": "（その２）ワークフロー毎のユニークIDと1から始まる番号とアクションごとのユニークID",
+  "steps": [
+    {
+      "name": "チェックアウト",
+      "uses": "actions/checkout@v2.0.0"
+    },
+    {
+      "name": "ユニークID",
+      "run": "make github-run-id"
+    },
+    {
+      "name": "ユニークID",
+      "run": "make github-run-id"
+    },
+    {
+      "name": "1から始まる番号",
+      "run": "make github-run-number"
+    },
+    {
+      "name": "1から始まる番号",
+      "run": "make github-run-number"
+    },
+    {
+      "name": "アクションのユニークID",
+      "run": "make github-action"
+    },
+    {
+      "name": "アクションのユニークID",
+      "run": "make github-action"
+    }
+  ]
+}
+{
+  "name": "ワークフローを実行したイベント名",
+  "steps": [
+    {
+      "name": "チェックアウト",
+      "uses": "actions/checkout@v2.0.0"
+    },
+    {
+      "name": "ワークフローを実行したイベント名",
+      "run": "make github-actor"
+    }
+  ]
+}
+{
+  "name": "リポジトリ名",
+  "steps": [
+    {
+      "name": "チェックアウト",
+      "uses": "actions/checkout@v2.0.0"
+    },
+    {
+      "name": "リポジトリ名",
+      "run": "make github-repository"
+    }
+  ]
+}
+{
+  "name": "イベントのペイロードが保存されたファイルへのパス",
+  "steps": [
+    {
+      "name": "チェックアウト",
+      "uses": "actions/checkout@v2.0.0"
+    },
+    {
+      "name": "イベントのペイロードが保存されたファイルへのパス",
+      "run": "make github-event-path"
+    }
+  ]
+}
+{
+  "name": "ワークスペースディレクトリへのパス",
+  "steps": [
+    {
+      "name": "チェックアウト",
+      "uses": "actions/checkout@v2.0.0"
+    },
+    {
+      "name": "ワークスペースディレクトリへのパス",
+      "run": "make github-workspace"
+    }
+  ]
+}
+{
+  "name": "コミットSHA",
+  "steps": [
+    {
+      "name": "チェックアウト",
+      "uses": "actions/checkout@v2.0.0"
+    },
+    {
+      "name": "コミットSHA",
+      "run": "make github-sha"
+    }
+  ]
+}
+----
+
+== help
+
+----
+$ make help
+######################################################################
+# Makeタスク一覧
+# $ make XXX
+# or
+# $ make XXX --dry-run
+######################################################################
+home                 ホームディレクトリ
+github-workflow      ワークフロー名
+github-run-id        ワークフロー毎のユニークID
+github-run-number    ワークフロー毎の1から始まる番号
+github-action        現在実行中のアクションのユニークなID
+github-actor         ワークフローを実行した人 or アプリ名
+github-repository    リポジトリ名(owner/repository)
+github-event-name    ワークフローを実行したイベント名
+github-event-path    ワークフローを実行したイベントのペイロードが保存されたファイルへのパス
+github-workspace     ワークスペースディレクトリへのパス
+github-sha           ワークフローが実行されているコミットSHA
+github-head-ref      ソースブランチ名(pull reqイベントのみ)
+github-base-ref      ベースブランチ名(pull reqイベントのみ)
+cat                  ワークフローを見る
+show                 簡単な説明
+help                 Make タスク一覧
+----
+

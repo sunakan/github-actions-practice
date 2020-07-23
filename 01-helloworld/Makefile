@@ -1,4 +1,5 @@
 include ../shared-makefiles/help.mk
+include ../shared-makefiles/readme.mk
 
 ################################################################################
 # 変数
