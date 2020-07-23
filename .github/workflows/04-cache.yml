@@ -21,7 +21,7 @@ jobs:
       - name: k14s全部インストール(もしyttが既にあるのならば、やらない)
         id: install-k14s
         run: |
-          command -v ${{ format('{0}{1}', github.workspace, '/hoge/ytt') }} \
+          ( command -v ${{ format('{0}{1}', github.workspace, '/hoge/ytt') }} && echo 'インストールしない') \
           || ( \
             sudo bash install.sh \
             && mkdir -p ${{ format('{0}{1}', github.workspace, '/hoge') }} \
