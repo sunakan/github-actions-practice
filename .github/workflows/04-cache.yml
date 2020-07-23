@@ -1,6 +1,9 @@
 #! onが'on'なのはyttが変な挙動をするため
+#! cache-versionを環境変数にしておくと、リセットが楽
 name: キャッシュ
 'on': push
+env:
+  cache-version: v1
 
 jobs:
   install-k14s:
@@ -17,8 +20,8 @@ jobs:
         uses: actions/cache@v2.0.0
         with:
           path: ${{ format('{0}{1}', github.workspace, '/hoge') }}
-          key: ${{ runner.os }}-sand-${{ hashFiles(format('{0}{1}', github.workspace, '/install.sh')) }}
-          restore-keys: ${{ runner.os }}-sand-
+          key: ${{ env.cache-version }}-${{ runner.os }}-${{ hashFiles(format('{0}{1}', github.workspace, '/install.sh')) }}
+          restore-keys: ${{ env.cache-version }}-${{ runner.os }}-
       - name: treeしてみる(もしyttがあるならキャッシュのリストアが成功している)
         run: tree ${{ github.workspace }}
       - name: k14s全部インストール(もしyttが既にあるのならば、やらない)
